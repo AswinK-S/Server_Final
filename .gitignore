@@ -1,0 +1,6 @@
+.env
+node_modules
+/public/media
+backup.bundle
+repo.bundle
+.gitattributes
