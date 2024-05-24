@@ -89,7 +89,6 @@ export function userRoute(router:Route){
 
     //webhook payment
     router.post('/webHookPayment',catchAsyncErrors((req:Req,res:Res,next:Next)=>{
-        console.log('webhook');
         userController.paymentWebHook(req,res,next)
     }))
 

@@ -3,7 +3,6 @@ import cookieParser from "cookie-parser";
 import cors from 'cors'
 import { errorMiddleware } from "../../../useCase/middleware/errorMiddleWare";
 
-// import morgan from 'morgan'
 
 // Routes
 import { userRoute } from "../routes/userRoute";
@@ -18,7 +17,6 @@ const app: Express = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
-// app.use(morgan('dev'))
 
 
 //cors setup

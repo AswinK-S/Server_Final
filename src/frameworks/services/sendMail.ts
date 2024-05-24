@@ -21,7 +21,7 @@ export class SendMail implements ISendMail {
     sendEmailVerification(name: string, email: string, verificationCode: string): Promise<{ success: boolean; }> {
         try {
             return new Promise((resolve, reject) => {
-
+                console.log('email---',email,'verification--',verificationCode);
                 const mailOptions = {
                     from: process.env.MAIL_from,
                     to: email,
@@ -53,7 +53,7 @@ export class SendMail implements ISendMail {
 
         try {
             return new Promise((resolve, reject) => {
-
+                console.log('doc email--',email,'doc password--',password);
                 const mailOptions = {
                     from: process.env.MAIL_from,
                     to: email,
@@ -82,8 +82,6 @@ export class SendMail implements ISendMail {
             throw (error.message)
         }
     }
-
-
 
 
 }

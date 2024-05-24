@@ -106,7 +106,7 @@ export class UserController {
   async googleSignUP(req:Req,res:Res,next:Next){
     try {
       const {name,email,mob}:{name:string,email:string,mob:number} = req.body
-      const password:string='G12345'
+      const password:string=process.env.GAuth_Pasword as string
     
       const result = await this.userUseCase.googleSignUpUseCase(name,email,mob,password,next)
       res.status(201).json({userId:result,message:result?.message,token:result?.token?.accessToken})
@@ -223,10 +223,10 @@ export class UserController {
   async getBookingDetails(req:Req,res:Res,next:Next){
     try {
      
+
       const email:string = req.params.email as string
       const page:number = Number(req.params.page)
       const pageSize:number = Number(req.params.pageSize)
-      
       const result = await this.userUseCase.getBookingDetailsUseCase(page,email,pageSize,next)
       res.status(200).json(result)
 
@@ -267,14 +267,15 @@ export class UserController {
   //----------------------------------------payment webhook
   async paymentWebHook(req:Req,res:Res,next:Next){
     try {
+      console.log('webHook');
       const result = await this.userUseCase.paymentWebhookUseCase(req,next)
-
+      console.log('webHook result--',result);
       if(result){
         const bookingData = req.app.locals.bookingData
-
         const chargeId:string =req.app.locals.chargeId 
-        const result = await this.userUseCase.createBookingUseCase(bookingData,chargeId,next) 
-        const conversationResult= await this.chatUseCase.conversationUseCase(bookingData.userId,bookingData.doctorId,next)
+         await this.userUseCase.createBookingUseCase(bookingData,chargeId,next) 
+         console.log('creating conversation',bookingData);
+         await this.chatUseCase.conversationUseCase(bookingData.userId,bookingData.doctorId,next)
       }else{
         console.log('booking failed');
       }
