@@ -1,6 +1,7 @@
 import { Server } from 'socket.io'
+import { server } from 'typescript';
 
-const SocketServer = (server: any) => {
+const SocketServer = (io: Server) => {
 
 
     interface User {
@@ -9,15 +10,15 @@ const SocketServer = (server: any) => {
         online?:boolean
     }
 
-    const io = new Server(server, {
-        cors: {
-            origin: 'http://localhost:5173',
-            credentials: true,
-            methods: ['GET', 'POST'],
-            optionsSuccessStatus: 204
+    // const io = new Server(server, {
+    //     cors: {
+    //         origin: 'http://localhost:5173',
+    //         credentials: true,
+    //         methods: ['GET', 'POST'],
+    //         optionsSuccessStatus: 204
 
-        }
-    })
+    //     }
+    // })
 
     let users: User[] = []
 
@@ -70,7 +71,7 @@ const SocketServer = (server: any) => {
 
    
     
-    io.listen(3001)
+    // io.listen(3001)
     return io
 }
 
