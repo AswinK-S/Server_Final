@@ -10,7 +10,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-      origin: 'http://localhost:5173',
+      origin: 'https://srd-ayurveda-client-side.vercel.app/',
       credentials: true,
       methods: ['GET', 'POST'],
       optionsSuccessStatus: 204,

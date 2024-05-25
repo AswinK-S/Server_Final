@@ -21,7 +21,7 @@ app.use(cookieParser())
 
 //cors setup
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://srd-ayurveda-client-side.vercel.app/',
     credentials:true,
     methods:['GET','POST','PUT','PATCH','DELETE'],
     optionsSuccessStatus:204    
