@@ -106,7 +106,9 @@ export class DoctorController {
     async getSlots (req:Req,res:Res,next:Next){
         try {
             const id:string= req.params.id
-            const result = await this.doctorUseCase.get_slots(id,next)
+            const pageNumber:number =Number(req.params.pageNumber)
+            const pageSize: number = Number(req.params.pageSize)
+            const result = await this.doctorUseCase.get_slots(id,pageNumber,pageSize,next)
             res.status(200).json(result)
         } catch (error) {
             return next (new ErrorHandler(500,(error as  Error).message))

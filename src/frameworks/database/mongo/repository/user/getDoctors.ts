@@ -8,9 +8,7 @@ export const getDoctors = async (email: string, bookingModels: typeof bookingMod
     try {
         const formattedEmail:string = email.trim().toLowerCase();
 
-        
         const bookings: IBooking[] = await bookingModels.find({ userEmail: formattedEmail,status:"Pending" }).exec();
-
         // Log the bookings received
 
         if (!bookings.length) {
@@ -24,7 +22,6 @@ export const getDoctors = async (email: string, bookingModels: typeof bookingMod
             return doctors;
         }
     } catch (error) {
-        console.error('Error:', error);
         throw (error as Error);
     }
 }

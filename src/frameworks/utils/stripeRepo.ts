@@ -48,7 +48,6 @@ export class Stripe implements IStripePayment {
     const paymentIntentId = payload?.data?.object?.payment_intent
     const payloadString = JSON.stringify(payload, null, 2);
     const sig = req.headers["stripe-signature"];
-    console.log('payment sig--',sig, 'paymentIntentId--',paymentIntentId,);
     if (typeof sig !== "string") {
       console.log('not string');
       return false;

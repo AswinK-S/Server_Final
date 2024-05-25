@@ -158,9 +158,9 @@ export class DoctorRepository implements IDoctorRepository{
     }
 
     //get slots
-    async getSlots(id:string):Promise<{slot:ISlot[],message:string}|void>{
+    async getSlots(id:string,pageNumber:number,pageSize:number):Promise<{slot:ISlot[],message:string}|void>{
         try {
-            const result = await getSlotsRepo(id,this.slotModels)
+            const result = await getSlotsRepo(id,pageNumber,pageSize,this.slotModels)
             return result
         } catch (error) {
             throw (error as Error)

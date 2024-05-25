@@ -173,9 +173,9 @@ export class DoctorUseCase implements IDoctorUseCase {
     }
 
     //get slot
-    async get_slots(id: string, next: Next): Promise<{ slot: ISlot[], message: string } | void> {
+    async get_slots(id: string,pageNumber:number,pageSize:number, next: Next): Promise<{ slot: ISlot[], message: string } | void> {
         try {
-            const result = await getSlotsFn(id, this.doctorRepository)
+            const result = await getSlotsFn(id,pageNumber,pageSize, this.doctorRepository)
             return result
         } catch (error) {
             catchError(error as Error, next)

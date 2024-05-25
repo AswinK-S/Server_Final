@@ -16,7 +16,7 @@ export interface IDoctorUseCase {
     uploadDoc(image:any,id:string,next:Next):Promise<any|IDoctor>
     getDocDetailUseCase (id:string,next:Next):Promise<IDoctor|void>
     create_slot (selectedShift:string,value:string,id:string,next:Next):Promise<{slot:ISlot[],message:string}|void|{message:string}>
-    get_slots(id:string,next:Next):Promise<{slot:ISlot[],message:string}|void>
+    get_slots(id:string,pageNumber:number,pageSize:number,next:Next):Promise<{slot:ISlot[],message:string}|void>
     //get otp to change the password
     changePasswordUseCase(name:string,email:string,next:Next):Promise<string|void>
     //verify otp to change  the password

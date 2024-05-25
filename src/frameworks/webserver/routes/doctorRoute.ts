@@ -54,7 +54,7 @@ export function doctorRoute(router:Route){
     }))
 
     //get docotor slots
-    router.get('/getSlots/:id',catchAsyncErrors((req:Req,res:Res,next:Next)=>{
+    router.get('/getSlots/:id/:pageNumber/:pageSize',catchAsyncErrors((req:Req,res:Res,next:Next)=>{
         doctorController.getSlots(req,res,next)
 
     }))

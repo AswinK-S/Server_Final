@@ -269,12 +269,10 @@ export class UserController {
     try {
       console.log('webHook');
       const result = await this.userUseCase.paymentWebhookUseCase(req,next)
-      console.log('webHook result--',result);
       if(result){
         const bookingData = req.app.locals.bookingData
         const chargeId:string =req.app.locals.chargeId 
          await this.userUseCase.createBookingUseCase(bookingData,chargeId,next) 
-         console.log('creating conversation',bookingData);
          await this.chatUseCase.conversationUseCase(bookingData.userId,bookingData.doctorId,next)
       }else{
         console.log('booking failed');

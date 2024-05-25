@@ -16,7 +16,7 @@ export interface    IDoctorRepository{
     updateDetailsRepo(id:string,query:Query):Promise<IDoctor|void>
     findDoctor(id:string):Promise<IDoctor|void>
     createSlotRepo(selectedShift:string,value:string,id:string):Promise<{slot:ISlot[],message:string}|void|{message:string}>
-    getSlots(id:string):Promise<{slot:ISlot[],message:string}|void>
+    getSlots(id:string,pageNumber:number,pageSize:number):Promise<{slot:ISlot[],message:string}|void>
     updatePasswordRepo(id:string,hashedPassword:string):Promise<IDoctor|void>
     getPatientsRepo(id:string,limit:number,page:number):Promise<IPatients[]|void>
 
