@@ -17,7 +17,6 @@ export class AdminController {
     async adlogin(req: Req, res: Res, next: Next) {
         try {
             const result = await this.adminUseCase.adlogin(req.body, next)
-            
             if (result) {
                 res.cookie('accessToken', result?.tokens.accessToken, accessTokenOptions)
                 res.cookie('refreshToken', result?.tokens.accessToken, refreshTokenOptions)

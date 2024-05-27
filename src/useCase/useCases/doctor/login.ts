@@ -25,7 +25,6 @@ export const doc_login = async(
 
             if(bcryptRegex.test(hashPassword)){
                 isPasswordMatch = await bcrypt.comparePassword(password, hashPassword);
-                console.log('psswrd mtch---',isPasswordMatch);
             }else{
                 isPasswordMatch = (hashPassword===password)?true:false
                 isPasswordMatch

@@ -14,6 +14,7 @@ export class DoctorController {
     // login
     async doclogin(req: Req, res: Res, next: Next) {
         try {
+            console.log('doctor login cntrlrxxxx');
             const { email, password }: { email: string, password: string } = req.body
             const result = await this.doctorUseCase.login({ email, password }, next)
             if (result) {

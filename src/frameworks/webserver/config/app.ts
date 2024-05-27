@@ -4,6 +4,7 @@ import cors from 'cors'
 import { errorMiddleware } from "../../../useCase/middleware/errorMiddleWare";
 
 
+
 // Routes
 import { userRoute } from "../routes/userRoute";
 import { adminRoute } from "../routes/adminRoute";
@@ -17,11 +18,12 @@ const app: Express = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
-
+const corsOrigin:string = process.env.CORS_ORIGIN as string
+const corsOrigin2:string = process.env.CORS_ORIGIN2 as string
 
 //cors setup
 app.use(cors({
-    origin:'https://srd-ayurveda-client-side.vercel.app/',
+    origin:[corsOrigin,corsOrigin2],
     credentials:true,
     methods:['GET','POST','PUT','PATCH','DELETE'],
     optionsSuccessStatus:204    

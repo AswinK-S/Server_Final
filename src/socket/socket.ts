@@ -1,5 +1,4 @@
 import { Server } from 'socket.io'
-import { server } from 'typescript';
 
 const SocketServer = (io: Server) => {
 

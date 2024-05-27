@@ -89,6 +89,7 @@ export class UserController {
   //-----------------------------------------------------login
   async login(req: Req, res: Res, next: Next) {
     try {
+      console.log('login cntrlr');
       const result = await this.userUseCase.login(req.body, next);
 
       res.cookie('accessToken', result?.tokens.accessToken, accessTokenOptions)

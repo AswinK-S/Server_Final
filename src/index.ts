@@ -7,10 +7,12 @@ import SocketServer from "./socket/socket";
 
 const port =3000
 const server = http.createServer(app)
+const corsOrigin:string = process.env.CORS_ORIGIN as string
+const corsOrigin2:string = process.env.CORS_ORIGIN2 as string
 
 const io = new Server(server, {
     cors: {
-      origin: 'https://srd-ayurveda-client-side.vercel.app/',
+      origin:[corsOrigin,corsOrigin2],
       credentials: true,
       methods: ['GET', 'POST'],
       optionsSuccessStatus: 204,
@@ -23,7 +25,6 @@ const start = ()=>{
     server.listen(port,()=>{
         console.log(`server started on http://localhost:${port}`);
         connectDb()
-        // socket(server)
     })
 }
 

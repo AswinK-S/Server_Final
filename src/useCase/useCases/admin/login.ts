@@ -17,7 +17,6 @@ export const adlogin = async (
 
     try {
         let admin = await adminRepository.findAdminByEmail(email)
-
         if (!admin) return next(new ErrorHandler(400, 'invalid email id'))
 
         const hashedPassword = admin.password

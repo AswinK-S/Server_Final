@@ -12,7 +12,7 @@ export const createBooking = async (amount: number, email: string, doctorId: str
                  await slotModels.findOneAndUpdate({ doctorId: doctorId,date }, { $inc: { count: -1 } }, { new: true })
             }
             return result
-        // }
+       
     } catch (error) {
         throw (error as Error)
     }
