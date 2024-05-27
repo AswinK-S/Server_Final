@@ -27,8 +27,8 @@ export class Stripe implements IStripePayment {
           },
         ],
         mode: 'payment',
-        success_url: 'http://localhost:5173/success',
-        cancel_url: 'http://localhost:5173/cancel',
+        success_url: process.env.Stripe_success,
+        cancel_url: process.env.Stripe_cancel,
         billing_address_collection: 'required'
       });
 
