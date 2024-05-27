@@ -9,10 +9,11 @@ const port =3000
 const server = http.createServer(app)
 const corsOrigin:string = process.env.CORS_ORIGIN as string
 const corsOrigin2:string = process.env.CORS_ORIGIN2 as string
+const corsOrigin1:string = process.env.CORS_ORIGIN1 as string
 
 const io = new Server(server, {
     cors: {
-      origin:[corsOrigin,corsOrigin2],
+      origin:[corsOrigin,corsOrigin2,corsOrigin1],
       credentials: true,
       methods: ['GET', 'POST'],
       optionsSuccessStatus: 204,
