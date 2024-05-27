@@ -11,8 +11,12 @@ export class Stripe implements IStripePayment {
   }
 
 
+
   async StripePayment(amount: number, email: string, treatmentName: string, doctorId: string, treatmentId: string, subTreatmentId: string, consultingDate: string): Promise<string | null> {
     try {
+     const stripeSucess:string =process.env.Stripe_success as string
+     const stripeCancel:string =process.env.Stripe_cancel as string
+
       const session = await stripe.checkout.sessions.create({
         line_items: [
           {
@@ -27,8 +31,8 @@ export class Stripe implements IStripePayment {
           },
         ],
         mode: 'payment',
-        success_url: process.env.Stripe_success,
-        cancel_url: process.env.Stripe_cancel,
+        success_url: stripeSucess,
+        cancel_url: stripeCancel,
         billing_address_collection: 'required'
       });
 
