@@ -31,7 +31,7 @@ export class Stripe implements IStripePayment {
           },
         ],
         mode: 'payment',
-        success_url: 'https://srd-ayurveda.vercel.app/sucess',
+        success_url: 'https://srd-ayurveda.vercel.app/success',
         cancel_url: 'https://srd-ayurveda.vercel.app/cancel',
         billing_address_collection: 'required'
       });
