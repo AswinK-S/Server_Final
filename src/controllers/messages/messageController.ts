@@ -32,6 +32,7 @@ export class MessageController{
     async saveMediaToCloudinary(req:Req,res:Res,next:Next){
         try {
             const media:any = req.file
+            console.log('media ',media);
             const result = await this.chatUseCase.uploadMediaUseCase(media,next)
             res.status(200).json(result)
         } catch (error) {

@@ -23,7 +23,6 @@ export const login = async (
         const result = await bcrypt.comparePassword(password, hashedPassword)
         if (result===false) {
             const err= next(new ErrorHandler(401, 'Invalid credentials'))
-            console.log('err----',err);
         }
 
         if (user.status && result) {

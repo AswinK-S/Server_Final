@@ -9,15 +9,7 @@ const SocketServer = (io: Server) => {
         online?:boolean
     }
 
-    // const io = new Server(server, {
-    //     cors: {
-    //         origin: 'http://localhost:5173',
-    //         credentials: true,
-    //         methods: ['GET', 'POST'],
-    //         optionsSuccessStatus: 204
 
-    //     }
-    // })
 
     let users: User[] = []
 

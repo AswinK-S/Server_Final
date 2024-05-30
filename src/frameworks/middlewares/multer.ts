@@ -11,6 +11,7 @@ import { Next, Req, Res } from '../types/serverPackageTypes';
 const setFileLimit = (req: Req, res: Res, next: Next) => {
     // Access the file using the correct key ('medias')
     const file = req.file
+    console.log('file --',file);
     if (!file) {
         return res.status(400).send('No media file found.');
     }
