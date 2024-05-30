@@ -15,9 +15,11 @@ import { messageRoute } from "../routes/messageRoute";
 
 const app: Express = express()
 
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true,limit: '20mb'}))
+app.use(express.json({ limit: '20mb' }))
+
 app.use(cookieParser())
+
 const corsOrigin:string = process.env.CORS_ORIGIN as string
 const corsOrigin2:string = process.env.CORS_ORIGIN2 as string
 
