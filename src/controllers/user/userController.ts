@@ -175,6 +175,7 @@ export class UserController {
     try {
       const image:any = req.file
       const id:string = req.body.id
+      console.log('image--',image);
       const result = await this.userUseCase.uploadProfileImageUseCase(image,id,next)
       res.status(200).json(result)
     } catch (error) {

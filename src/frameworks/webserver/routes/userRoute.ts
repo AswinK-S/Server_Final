@@ -1,7 +1,7 @@
 import { Route,Req,Res,Next } from "../../types/serverPackageTypes";
 import { resendOtpController, userController } from "./injections/injuction";
 import { catchAsyncErrors } from "../middleware/catchAsyncErrors";
-import { multerMid } from "../../middlewares/multer";
+import { multerMid, setFileLimit } from "../../middlewares/multer";
 
 
 export function userRoute(router:Route){
@@ -58,7 +58,7 @@ export function userRoute(router:Route){
     }))
 
     //profile image upload
-    router.post('/proImageUpload',multerMid.single('image'),catchAsyncErrors((req:Req,res:Res,next:Next)=>{
+    router.post('/proImageUpload',multerMid.single('image'),setFileLimit,catchAsyncErrors((req:Req,res:Res,next:Next)=>{
         userController.profileImage(req,res,next)
     }))
     
