@@ -66,7 +66,7 @@ const multerMid = multer({
     storage: storage,
     limits: {
         fieldNameSize: 100,
-        fieldSize: 5 * 1024 * 1024
+        fieldSize:  10* 1024 * 1024
     }
 });
 
