@@ -21,12 +21,15 @@ const setFileLimit = (req: Req, res: Res, next: Next) => {
         maxSize = 5 * 1024 * 1024; // 5 MB for images
     } else if (file.mimetype.startsWith('video/')) {
         maxSize = 10 * 1024 * 1024; // 10 MB for videos
+    } else if (file.mimetype.startsWith('audio/')) {
+        maxSize = 5 * 1024 * 1024; // 5 MB for audio files
+        console.log('audio');
     } else {
         maxSize = 5 * 1024 * 1024; // Default to 5 MB for other documents
     }
 
     if (file.size > maxSize) {
-
+console.log('size increase');
         if (typeof file.path === 'string' && file.path.trim().length > 0) {
             fs.unlink(file.path, (err) => {
                 if (err) {

@@ -18,19 +18,24 @@ export class Cloudinary implements ICloudinaryRepository {
       "zip",
     ];
     const allowedImageTypes = ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp"];
+    const allowedAudioTypes = ['mp3', 'wav', 'ogg', 'flac','aiff','alac']
+    
     const fileExtension = file.originalname.split(".").pop().toLowerCase();
-    let resourceType: 'image' | 'video' | 'raw' = 'raw';
-
+    let resourceType: 'image' | 'video' | 'raw' | 'auto' = 'raw';
     if (allowedVideoTypes.includes(fileExtension)) {
       resourceType = 'video';
     } else if (allowedImageTypes.includes(fileExtension)) {
       resourceType = 'image';
+    } else if(allowedAudioTypes.includes(fileExtension)){
+      resourceType ='auto';
     }
 
     if (
       allowedVideoTypes.includes(fileExtension) ||
       allowedDocTypes.includes(fileExtension) ||
-      allowedImageTypes.includes(fileExtension)
+      allowedImageTypes.includes(fileExtension) ||
+      allowedAudioTypes.includes(fileExtension)
+
     ) {
       const result = await cloudinary.v2.uploader.upload(file?.path, { folder, resource_type: resourceType, })
 
