@@ -10,6 +10,7 @@ import {
 
 export class TreatmentRepository implements ITreatmentRepository {
 
+    constructor(){}
 
     //addnewTreatment
      async addTreatment(name: string, subTreatments:[]): Promise<ITreatment> {

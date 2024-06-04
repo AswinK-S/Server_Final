@@ -1,5 +1,4 @@
-    import { Iuser } from "../../../../entity/userEntity";
-
+import { Iuser } from "../../../../entity/userEntity";
 import mongoose,{ Schema,Model } from "mongoose";
 
 const userSchema:Schema<Iuser> =new mongoose.Schema({
@@ -36,7 +35,13 @@ const userSchema:Schema<Iuser> =new mongoose.Schema({
     },
     image:{
         type:String
-    }
+    },
+    prescriptions:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Prescription'
+        }
+    ]
 })
 
 const userModel:Model<Iuser> = mongoose.model('User',userSchema)

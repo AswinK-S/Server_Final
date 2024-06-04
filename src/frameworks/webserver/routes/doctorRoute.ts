@@ -74,5 +74,10 @@ export function doctorRoute(router:Route){
         doctorController.confirmConsultation(req,res,next)
     }))
 
+    //add prescription
+    router.post('/addPres',catchAsyncErrors((req:Req,res:Res,next:Next)=>{
+        doctorController.addPrescription(req,res,next)
+    }))
+
     return router
 }

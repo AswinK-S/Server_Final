@@ -45,6 +45,12 @@ import { ChatUseCase } from "../../../../useCase/useCases/chatUseCase";
 import { ChatRepository } from "../../../database/mongo/repository/chatRepository";
 import { MessageRepository } from "../../../database/mongo/repository/messageRepository";
 
+
+//prescription
+import { PrescriptionUseCase } from "../../../../useCase/useCases/prescriptionUseCase";
+import prescriptionModel from "../../../database/mongo/models/prescriptionModel";
+import { PrescriptionRepository } from "../../../database/mongo/repository/prescriptionRepo";
+
 const cloudinary = new Cloudinary()
 
 const chatRepository = new ChatRepository(conversationModel)
@@ -107,6 +113,12 @@ const doctorUseCase = new DoctorUseCase(
     bookingRepository
     )
 
+
+//prescription
+const prescriptionRepository = new PrescriptionRepository(userModel,prescriptionModel)
+const prescriptionUseCase = new PrescriptionUseCase(prescriptionRepository)   
+
+
 //users controllers
 const userController = new UserController(userUseCase,adminUseCase,chatUseCase)
 const resendOtpController = new ResendOtpController(userUseCase)
@@ -115,7 +127,7 @@ const resendOtpController = new ResendOtpController(userUseCase)
 const adminController = new AdminController(adminUseCase)
 
 //doctor controllers
-const doctorController = new DoctorController(doctorUseCase)
+const doctorController = new DoctorController(doctorUseCase,prescriptionUseCase)
 const getOtpController =new GetOtpController(doctorUseCase)
 const verifyOtpController = new VerifyOtpController(doctorUseCase)
 const updatePasswordController = new UpdatePasswordController(doctorUseCase)

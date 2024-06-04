@@ -1,14 +1,17 @@
 import { Req, Res, Next } from "../../frameworks/types/serverPackageTypes";
 import ErrorHandler from "../../useCase/middleware/errorHandler";
 
-import { accessTokenOptions, refreshTokenOptions } from "../../frameworks/middlewares/tokenOptions";
 import { IDoctorUseCase } from "../../useCase/interface/IntrfcUseCase/doctorUseCase";
 import { Query } from "../../entity/query";
+import { IPrescriptionUseCase } from "../../useCase/interface/IntrfcUseCase/prescriptionUseCase";
 export class DoctorController {
     private doctorUseCase: IDoctorUseCase
-
-    constructor(doctorUseCase: IDoctorUseCase) {
+    private prescriptionUseCase:IPrescriptionUseCase
+    constructor(doctorUseCase: IDoctorUseCase,
+        prescriptionUseCase:IPrescriptionUseCase
+    ) {
         this.doctorUseCase = doctorUseCase
+        this.prescriptionUseCase = prescriptionUseCase
     }
 
     // login
@@ -147,6 +150,17 @@ export class DoctorController {
             res.status(200).json(result)
         } catch (error) {
             return next (new ErrorHandler(500,(error as Error).message))
+        }
+    }
+
+    //add prescription
+    async addPrescription(req:Req,res:Res,next:Next){
+        try{
+            const {prescription,docId,userEmail}:{prescription:string,docId:string,userEmail:string}=req.body
+            const result = await this.prescriptionUseCase.addPrescriptionUseCase(prescription,docId,userEmail)
+              res.status(200).json(result)
+        }catch(error){
+            return next(new ErrorHandler(500,(error as Error).message))
         }
     }
 
