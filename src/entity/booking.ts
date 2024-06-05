@@ -9,5 +9,6 @@ export interface IBooking {
     status:string,
     consultingDate: Date,
     chargeId:string,
-    timeStamps:Boolean
+    timeStamps:Boolean,
+    prescriptions?:mongoose.Types.ObjectId
 }

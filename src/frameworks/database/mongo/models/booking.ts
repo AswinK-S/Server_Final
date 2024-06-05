@@ -36,6 +36,10 @@ const bookingSchema: Schema<IBooking> = new mongoose.Schema({
         type:String,
         required:true
     },
+    prescriptions:{
+        type:mongoose.Schema.Types.ObjectId,
+            ref:'Prescription'
+    },
     timeStamps:{
         type:Boolean,
         default:true

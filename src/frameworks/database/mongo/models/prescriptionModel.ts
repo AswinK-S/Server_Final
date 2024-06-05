@@ -12,6 +12,7 @@ const prescriptionSchema: Schema<Iprescription> = new mongoose.Schema({
     userEmail:{
         type:String
     },
+
     notes:{
         type:String
     }

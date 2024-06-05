@@ -10,7 +10,7 @@ export const getPatients = async (id: string, limit: number, page: number, booki
             .skip(skip)
             .limit(limit)
             .populate("treatmentId", "name subTreatments") // Populate treatment name and sub-treatments
-            .select("doctorId userEmail treatmentId subTreatmentId amount status consultingDate createdAt ")
+            .select("doctorId userEmail treatmentId subTreatmentId amount status consultingDate createdAt prescriptions ")
             .lean();
 
         const userEmails = bookings.map((booking: any) => booking.userEmail)
@@ -30,6 +30,7 @@ export const getPatients = async (id: string, limit: number, page: number, booki
             const user = users.find((user: any) => user.email === email)
             const userName = user ? user.name : 'unknown'
             const consultingDate = booking.consultingDate
+             const prescription=booking?.prescriptions ||'no prescription'
 
             const formatedDate = consultingDate?.toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -45,7 +46,8 @@ export const getPatients = async (id: string, limit: number, page: number, booki
                 email,
                 userName,
                 status,
-                consultingDate:formatedDate
+                consultingDate:formatedDate,
+                prescription
             }
         })
 

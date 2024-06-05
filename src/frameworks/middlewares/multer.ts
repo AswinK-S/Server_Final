@@ -29,7 +29,7 @@ const setFileLimit = (req: Req, res: Res, next: Next) => {
     }
 
     if (file.size > maxSize) {
-console.log('size increase');
+        console.log('size increase');
         if (typeof file.path === 'string' && file.path.trim().length > 0) {
             fs.unlink(file.path, (err) => {
                 if (err) {

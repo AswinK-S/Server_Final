@@ -22,7 +22,7 @@ export const bookings = async (
       .limit(pageSize)
       .populate("doctorId", "name") // Populate doctor name
       .populate("treatmentId", "name subTreatments") // Populate treatment name and sub-treatments
-      .select("doctorId treatmentId subTreatmentId amount status consultingDate createdAt chargeId")
+      .select("doctorId treatmentId subTreatmentId amount status consultingDate createdAt chargeId prescriptions")
       .lean()
       .sort({ createdAt: -1 });
 
@@ -36,6 +36,7 @@ export const bookings = async (
         booking.treatmentId?.subTreatments.find(
           (subTreatment: any) => subTreatment._id.toString() === booking.subTreatmentId
         )?.name || "Unknown Sub-Treatment";
+       const prescription=booking?.prescriptions ||'no prescription'
 
       return {
         id,
@@ -47,7 +48,8 @@ export const bookings = async (
         bookedDate:booking?.createdAT,
         consultationDate:booking?.consultingDate,
         status:booking?.status,
-        bookingDate:booking?.createdAt
+        bookingDate:booking?.createdAt,
+        prescription
       };
     });
 

@@ -115,12 +115,12 @@ const doctorUseCase = new DoctorUseCase(
 
 
 //prescription
-const prescriptionRepository = new PrescriptionRepository(userModel,prescriptionModel)
+const prescriptionRepository = new PrescriptionRepository(userModel,prescriptionModel,bookingModel)
 const prescriptionUseCase = new PrescriptionUseCase(prescriptionRepository)   
 
 
 //users controllers
-const userController = new UserController(userUseCase,adminUseCase,chatUseCase)
+const userController = new UserController(userUseCase,adminUseCase,chatUseCase,prescriptionUseCase)
 const resendOtpController = new ResendOtpController(userUseCase)
 
 //admin controllers

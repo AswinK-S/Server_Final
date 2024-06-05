@@ -156,8 +156,8 @@ export class DoctorController {
     //add prescription
     async addPrescription(req:Req,res:Res,next:Next){
         try{
-            const {prescription,docId,userEmail}:{prescription:string,docId:string,userEmail:string}=req.body
-            const result = await this.prescriptionUseCase.addPrescriptionUseCase(prescription,docId,userEmail)
+            const {prescription,docId,bookingId,userEmail}:{prescription:string,docId:string,bookingId:string,userEmail:string}=req.body
+            const result = await this.prescriptionUseCase.addPrescriptionUseCase(prescription,docId,bookingId,userEmail)
               res.status(200).json(result)
         }catch(error){
             return next(new ErrorHandler(500,(error as Error).message))

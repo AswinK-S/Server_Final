@@ -107,6 +107,9 @@ export function userRoute(router:Route){
         userController.getUsersForChat(req,res,next)
     }))
 
+    router.get('/prescritpion',catchAsyncErrors((req:Req,res:Res,next:Next)=>{
+        userController.prescriptionPdf(req,res,next)
+    }))
    
 
     return router
