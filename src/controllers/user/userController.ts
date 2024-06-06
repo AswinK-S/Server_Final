@@ -278,9 +278,7 @@ export class UserController {
         const chargeId: string = req.app.locals.chargeId
         await this.userUseCase.createBookingUseCase(bookingData, chargeId, next)
         await this.chatUseCase.conversationUseCase(bookingData.userId, bookingData.doctorId, next)
-      } else {
-        console.log('booking failed');
-      }
+      } 
     } catch (error) {
       return next(new ErrorHandler(400, error as Error))
     }

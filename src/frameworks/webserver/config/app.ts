@@ -32,7 +32,9 @@ app.use(cors({
     origin:[corsOrigin,corsOrigin1,corsOrigin2],
     credentials:true,
     methods:['GET','POST','PUT','PATCH','DELETE'],
-    optionsSuccessStatus:204    
+    optionsSuccessStatus:204,
+    allowedHeaders: ['Content-Type', 'Authorization']
+    
 }))
 
 
