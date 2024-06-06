@@ -11,6 +11,8 @@ import {
 import { IadminUseCase } from "../../useCase/interface/IntrfcUseCase/adminUseCase";
 import { IChatUseCase } from "../../useCase/interface/IntrfcUseCase/chatUseCase";
 import { IPrescriptionUseCase } from "../../useCase/interface/IntrfcUseCase/prescriptionUseCase";
+import { generatePrescriptionPdf } from "../../frameworks/utils/prescriptionPdf";
+
 
 export class UserController {
   private userUseCase: IUserUseCase;
@@ -329,7 +331,6 @@ export class UserController {
   async prescriptionPdf(req: Req, res: Res, next: Next) {
     try {
       const { doctorName, treatmentName, subTreatmentName, consultationDate, userName, prescriptionId } = req.query
-
       const doctorNameStr = typeof doctorName === 'string' ? doctorName : '';
       const treatmentNameStr = typeof treatmentName === 'string' ? treatmentName : '';
       const subTreatmentNameStr = typeof subTreatmentName === 'string' ? subTreatmentName : '';
@@ -337,16 +338,30 @@ export class UserController {
       const userNameStr = typeof userName === 'string' ? userName : '';
       const prescriptionIdStr = typeof prescriptionId === 'string' ? prescriptionId : '';
 
-    
+
 
       const result = await this.prescriptionUseCase.getPrescriptionUseCase(
+       
+        prescriptionIdStr
+      );
+      console.log(result,'45');
+      if (!result) {
+        return res.status(404).json({ message: 'Prescription not found' });
+      }
+
+      const pdfData = await generatePrescriptionPdf(
+        result,
         doctorNameStr,
         treatmentNameStr,
         subTreatmentNameStr,
         consultationDateStr,
-        userNameStr,
-        prescriptionIdStr
+        userNameStr
       );
+      console.log('PDF Data:', pdfData); // Add this line
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `inline; filename=prescription_${result._id}.pdf`);
+      res.status(200).send(pdfData);
+
     } catch (error) {
       return next(new ErrorHandler(400, error as Error))
     }

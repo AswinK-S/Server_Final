@@ -24,12 +24,10 @@ export class PrescriptionUseCase  implements IPrescriptionUseCase{
         }
     }
 
-    async getPrescriptionUseCase(doctorName:string, treatmentName:string, subTreatmentName:string,
-         consultationDate:string, userName:string,prescriptionId:string ):Promise<any>{
+    async getPrescriptionUseCase(prescriptionId:string ):Promise<any>{
         try{
-            console.log('in usecase');
             const prescription = await getPrescriptionFn(prescriptionId,this.prescriptionRepository) 
-            console.log('prescription',prescription);
+            return prescription
         }catch(error){
             throw (error as Error)
         }
