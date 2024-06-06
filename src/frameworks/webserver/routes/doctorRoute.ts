@@ -22,7 +22,6 @@ export function doctorRoute(router:Route){
     
     //verifyOtp to change password
     router.post('/verifyOtp',catchAsyncErrors((req:Req,res:Res,next:Next)=>{
-        console.log('in routr');
         verifyOtpController.verifyOtp(req,res,next);
     
     }))

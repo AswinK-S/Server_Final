@@ -17,7 +17,6 @@ export const blckUsrRepo = async(id:string):Promise<string>=>{
         }
         return result
     } catch (error:any) {
-        console.log('error frm blck usrRepo',error.message);
         throw(error)
     }
 }

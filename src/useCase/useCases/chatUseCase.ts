@@ -97,7 +97,6 @@ export class ChatUseCase implements IChatUseCase {
     //upload media to cloudinary for chat
     async uploadMediaUseCase(media:any,next:Next):Promise<string|void>{
         try {
-            console.log('upload media usecase',media);
             const result = await this.cloudinary.saveToCloudinary(media,'ChatMedia')
             return result
         } catch (error) {

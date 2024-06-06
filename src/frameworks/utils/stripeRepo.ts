@@ -53,7 +53,6 @@ export class Stripe implements IStripePayment {
     const payloadString = JSON.stringify(payload, null, 2);
     const sig = req.headers["stripe-signature"];
     if (typeof sig !== "string") {
-      console.log('not string');
       return false;
     }
     const endpointSecret =
@@ -78,7 +77,6 @@ export class Stripe implements IStripePayment {
         const chargeId = paymentIntentResponse.latest_charge;
         req.app.locals.chargeId = chargeId;
       } else {
-        console.log('No latest charge found for this PaymentIntent.');
         return null;
       }
     }

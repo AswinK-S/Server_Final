@@ -15,7 +15,6 @@ export const  addDoctor =async(
     next:Next
     )=>{
         try{
-            console.log('addDoctor function from useCases');
             const isDocExistInEmail = await doctorRepository.isDoctorExist(email)
 
             if(isDocExistInEmail ==='doctor not exist in this email'){

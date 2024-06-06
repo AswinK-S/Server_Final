@@ -180,7 +180,6 @@ export class UserController {
     try {
       const image: any = req.file
       const id: string = req.body.id
-      console.log('image--', image);
       const result = await this.userUseCase.uploadProfileImageUseCase(image, id, next)
       res.status(200).json(result)
     } catch (error) {
@@ -273,7 +272,6 @@ export class UserController {
   //----------------------------------------payment webhook
   async paymentWebHook(req: Req, res: Res, next: Next) {
     try {
-      console.log('webHook');
       const result = await this.userUseCase.paymentWebhookUseCase(req, next)
       if (result) {
         const bookingData = req.app.locals.bookingData
@@ -344,7 +342,6 @@ export class UserController {
        
         prescriptionIdStr
       );
-      console.log(result,'45');
       if (!result) {
         return res.status(404).json({ message: 'Prescription not found' });
       }
@@ -357,7 +354,6 @@ export class UserController {
         consultationDateStr,
         userNameStr
       );
-      console.log('PDF Data:', pdfData); // Add this line
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `inline; filename=prescription_${result._id}.pdf`);
       res.status(200).send(pdfData);

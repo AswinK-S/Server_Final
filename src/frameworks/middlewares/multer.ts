@@ -11,7 +11,6 @@ import { Next, Req, Res } from '../types/serverPackageTypes';
 const setFileLimit = (req: Req, res: Res, next: Next) => {
     // Access the file using the correct key ('medias')
     const file = req.file
-    console.log('file --',file);
     if (!file) {
         return res.status(400).send('No media file found.');
     }
@@ -23,13 +22,11 @@ const setFileLimit = (req: Req, res: Res, next: Next) => {
         maxSize = 10 * 1024 * 1024; // 10 MB for videos
     } else if (file.mimetype.startsWith('audio/')) {
         maxSize = 5 * 1024 * 1024; // 5 MB for audio files
-        console.log('audio');
     } else {
         maxSize = 5 * 1024 * 1024; // Default to 5 MB for other documents
     }
 
     if (file.size > maxSize) {
-        console.log('size increase');
         if (typeof file.path === 'string' && file.path.trim().length > 0) {
             fs.unlink(file.path, (err) => {
                 if (err) {
