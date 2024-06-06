@@ -1,9 +1,13 @@
-require('dotenv').config()
+import dotenv from 'dotenv'
+dotenv.config();
+
 import app from "./frameworks/webserver/config/app";
 import connectDb from "./frameworks/webserver/config/db";
 import http from 'http'
 import { Server } from 'socket.io'
 import SocketServer from "./socket/socket";
+
+
 
 const port =3000
 const server = http.createServer(app)

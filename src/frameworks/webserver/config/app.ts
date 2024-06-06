@@ -20,6 +20,9 @@ app.use(express.json({ limit: '20mb' }))
 
 app.use(cookieParser())
 
+
+
+
 const corsOrigin:string = process.env.CORS_ORIGIN as string
 const corsOrigin1:string = process.env.CORS_ORIGIN1 as string
 const corsOrigin2:string = process.env.CORS_ORIGIN2 as string
