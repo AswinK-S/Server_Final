@@ -262,6 +262,7 @@ export class UserController {
         amount: number, email: string, treatmentName: string, doctorId: string, treatmentId: string, subTreatmentId: string, consultingDate: string
       } = req.body
       const result = await this.userUseCase.paymentUseCase(amount, email, treatmentName, doctorId, treatmentId, subTreatmentId, consultingDate, next)
+      console.log('payment --',result);
       res.status(200).json(result)
 
     } catch (error) {
@@ -273,6 +274,7 @@ export class UserController {
   async paymentWebHook(req: Req, res: Res, next: Next) {
     try {
       const result = await this.userUseCase.paymentWebhookUseCase(req, next)
+      console.log('wb hk rslt',result);
       if (result) {
         const bookingData = req.app.locals.bookingData
         const chargeId: string = req.app.locals.chargeId

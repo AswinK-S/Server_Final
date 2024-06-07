@@ -38,6 +38,7 @@ export class Stripe implements IStripePayment {
 
       const date: Date = new Date(consultingDate)
       const sessionId = session.id
+
       return session.url;
 
     } catch (error) {
@@ -49,6 +50,7 @@ export class Stripe implements IStripePayment {
   //payment success
   async PaymentSuccess(req: any):Promise<any> {
     const payload = req.body;
+    console.log('payload wbHk',payload);
     const paymentIntentId = payload?.data?.object?.payment_intent
     const payloadString = JSON.stringify(payload, null, 2);
     const sig = req.headers["stripe-signature"];
@@ -71,6 +73,7 @@ export class Stripe implements IStripePayment {
     );
 
     if (paymentIntentId) {
+      console.log('pymnt intnt');
       const paymentIntentResponse = await stripe.paymentIntents.retrieve(paymentIntentId);
       const paymentIntent = paymentIntentResponse
       if (paymentIntentResponse.latest_charge) {
