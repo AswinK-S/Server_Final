@@ -23,4 +23,6 @@ export interface  IUserRepository {
 
     //get users data for admin
     getUsersDataRepo(req:Req):Promise<object>
+    //userAuthentication repo
+    checkUserAuthRepo(email:string):Promise<Iuser|void>
 }

@@ -16,7 +16,8 @@ import {
     changePassword,
     uploadProImg,
     updateProfile,
-    getUsersData
+    getUsersData,
+    userAuth
 } from './user/index'
 
 import doctorModel from "../models/doctorModel";
@@ -172,6 +173,16 @@ export class UserRepository implements IUserRepository {
          return result
         } catch (error) {
             throw (error as Error)
+        }
+    }
+
+    //userAuthentication check
+    async checkUserAuthRepo(email:string):Promise<Iuser|void>{
+        try {
+            const result = await userAuth(email,this.userModels)
+            return result
+        } catch (error) {
+            throw(error as Error)
         }
     }
 

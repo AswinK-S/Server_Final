@@ -2,7 +2,7 @@ import { Route,Req,Res,Next } from "../../types/serverPackageTypes";
 import { resendOtpController, userController } from "./injections/injuction";
 import { catchAsyncErrors } from "../middleware/catchAsyncErrors";
 import { multerMid, setFileLimit } from "../../middlewares/multer";
-
+import { authMiddleware } from "../../middlewares/userAuth";
 
 export function userRoute(router:Route){
 
@@ -33,12 +33,12 @@ export function userRoute(router:Route){
     }))
 
     //login Route
-    router.post('/login',catchAsyncErrors((req:Req,res:Res ,next:Next)=>{
+    router.post('/login',authMiddleware,catchAsyncErrors((req:Req,res:Res ,next:Next)=>{
         userController.login(req,res,next)
     }))
 
     //verify email for forgot password
-    router.post('/verifyEmail',catchAsyncErrors((req:Req,res:Res,next:Next)=>{
+    router.post('/verifyEmail',authMiddleware,catchAsyncErrors((req:Req,res:Res,next:Next)=>{
         userController.verifyEmail(req,res,next)
     }))
 

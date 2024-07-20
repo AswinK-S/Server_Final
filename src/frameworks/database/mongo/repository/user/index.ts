@@ -12,6 +12,7 @@ import { changePassword } from "./changePassword"
 import { uploadProImg } from "./profileImgUpload"
 import { updateProfile } from "./updateProfile"
 import { getUsersData } from "./getUsersData"
+import {userAuth} from './userAuth'
 
 export { 
     findUserByEmail,
@@ -27,6 +28,7 @@ export {
     changePassword,
     uploadProImg,
     updateProfile,
-    getUsersData
+    getUsersData,
+    userAuth
 }
    
